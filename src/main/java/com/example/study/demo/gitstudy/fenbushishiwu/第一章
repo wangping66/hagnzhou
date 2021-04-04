@@ -1,0 +1,18 @@
+解释下ACID
+下面用一个转账的例子解释下
+这里有2个事务 一个是A给B转账200元，另一个是B查询自己的余额
+A原子性  第一个事务分为2个步骤，A账号减少200，B账号增加200 这2个步骤看做一个原子操作
+必须同时成功，同时失败，不能出现其他情况 用SQL就是
+     Begin Transaction;
+     update t_user set amount = amount-100 where username = '张三';
+     update t_user set amount = amount+100 where username = '李四';
+     COMMIT
+     --ROLLBACK
+i 隔离性 这两个事物之间是怎去分开的，B什么时候可以看到自己的余额的变化
+C 一致性 就是事物前后，总的钱不能增加或者减少
+D 持久性 就是提交之后，数据库就应该有改变，未提交，数据库则不能有变化
+
+java jdbc的操作
+
+service mysql restart
+mysql -u root -p

@@ -1,0 +1,24 @@
+Linux docker安装
+https://www.jianshu.com/p/2dae7b13ce2f
+会遇到权限问题 可以解决
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+newgrp docker
+docker 常用命令
+  docker image ls 列出
+  1、删除容器
+  1）首先需要停止所有的容器
+  docker stop $(docker ps -a -q)
+  2）删除所有的容器（只删除单个时把后面的变量改为image id即可）
+  docker rm $(docker ps -a -q)
+  docker ps  列出正在运行的实例
+  docker run --name mysql1 mysql/mysql-server:5.7 启动实例，如果没有，会去拉去取
+docker run --name mysql1 --env MYSQL_ROOT_HOST=172.17.%.% --env MYSQL_ROOT_PASSWORD=123456
+查看mysql容器的ip
+docker inspect df6d83034964 | grep IPAddress
+https://jingyan.baidu.com/article/11c17a2caf37bab446e39de1.html
+[08001] Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+com.mysql.cj.exceptions.CJException: null,  message from server: "Host '192.168.58.1' is not allowed to connect to this MySQL server".
+docker exec -it mysql2 bash //mysql2是我启动的mysql服务的name
+ mysql -uroot -p
+
